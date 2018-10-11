@@ -1,10 +1,51 @@
+
 /* P2.c */
 /* Henrique Rodrigues de Sousa */
 /* 11811ECP011 */
 
 #include <stdio.h>
 
-static void dec_bin15(int dec)
+
+int power(int base,int exp)
+{
+	int i=0, pow=1;
+	for (i; i < exp; i++){
+		pow = pow * base;
+	}
+	return pow;
+}
+
+int bin_dec(char bit[])
+{
+	int i=0, dec=0, a=0;
+	for (a; bit[a] != '\0'; a++){}
+	a = a-1;
+	for (a, i; bit[a] != '\0'; a--, i++){
+		if (bit[a]=='1'){
+			dec = dec + power(2, i);
+		}
+		else 
+		dec = dec;
+	}
+    
+	return dec;
+}
+
+int bin_hex(int binario)
+{
+    int  hexadecimal = 0, i = 1, resto; 
+    while (binario != 0)
+    {
+        resto = binario % 10;
+        hexadecimal = hexadecimal + resto * i;
+        i = i * 2;
+        binario = binario / 10;
+    }
+    
+    return hexadecimal;
+}
+
+void dec_bin15(int dec)
 {
   int bit;
   int k;
@@ -34,7 +75,7 @@ long dec_bin10(long n) {
 
 int main ()
 {
-    long int binario;
+    int binario;
 	int opcao, num;
     char bit[256];
     printf("Main Menu\n");
@@ -59,9 +100,9 @@ int main ()
         break;
     case 2:
         printf("Digite o numero que deseja converter:\n");
-        scanf("%ld", &binario);
+        scanf("%d", &binario);
         getchar();
-        printf("Numero em hexadecimal: %lX", bin_hex(binario));
+        printf("Numero em hexadecimal: %X", bin_hex(binario));
         break;
     case 3:
         printf("Digite o numero que deseja converter:\n");
@@ -106,48 +147,7 @@ int main ()
     }
 
 while(opcao != 9);
+return 0;
 
 }
 
-
-
-
-int bin_hex(long int binario)
-{
-    long int  hexadecimal = 0, i = 1, resto; 
-    while (binario != 0)
-    {
-        resto = binario % 10;
-        hexadecimal = hexadecimal + resto * i;
-        i = i * 2;
-        binario = binario / 10;
-    }
-    
-    return hexadecimal;
-}
-
-int bin_dec(char bit[])
-{
-	int i=0, dec=0, a=0;
-	for (a; bit[a] != '\0'; a++){}
-	a = a-1;
-	for (a, i; bit[a] != '\0'; a--, i++){
-		if (bit[a]=='1'){
-			dec = dec + power(2, i);
-		}
-		else 
-		dec = dec;
-	}
-    
-	return dec;
-}
-
-
-int power(int base,int exp)
-{
-	int i=0, pow=1;
-	for (i; i < exp; i++){
-		pow = pow * base;
-	}
-	return(pow);
-}
