@@ -1,3 +1,7 @@
+/* P3.c */
+/* Henrique Rodrigues de Sousa */
+/* 11811ECP011 */
+
 #include <stdio.h>
 
 int power(int base,int exp)
